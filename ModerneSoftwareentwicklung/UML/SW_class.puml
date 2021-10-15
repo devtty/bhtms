@@ -1,0 +1,87 @@
+@startuml
+
+class Artikel{
+  -bezeichung : String
+  -gewicht : int
+  -preis : int
+ .. Konstruktor ..
+  +Artikel(String bezeichnung)
+ ..get/set..
+ +void setGewicht(int i)
+ +int getGewicht()
+ +void setPreis(int preis)
+ +int getPreis()
+  
+}
+
+class Artikelgruppe{
+  id : int
+  void entnehme(Artikel artikel)
+  void loeschAlleArtikel()
+  int gesamtGewicht()
+}
+
+package Personen{
+  class Person{
+    name : String
+    adresse : Adresse
+  }
+
+class Kunde extends Person{
+ Auftrag erstelltAuftrag()
+}
+
+class Mitarbeiter extends Person{
+}
+
+class Lagerarbeiter extends Mitarbeiter{
+
+}
+
+class Disponent extends Mitarbeiter{
+ Rechnung erstelleRechnung(Auftrag auftrag)
+}
+
+}
+
+package Auftragswesen{
+  class Auftrag{
+    nummer : nummer
+    kunde : Kunde
+    disponent : Disponent
+  }
+
+  class Rechnung {
+    nummer : int
+    datum : Date
+    auftrag : Auftrag
+    bezahlt : boolean
+    
+  }
+}
+
+class Adresse {
+  strasse : String
+  ort : String
+  plz : String
+}
+
+class Lager{
+  adresse : Adresse
+}
+
+Auftrag "0..*" -- "1" Kunde : stellt
+Auftrag "0..*" -- "1" Disponent
+Auftrag "1"  -- "1" Rechnung
+Auftrag "1" -- "1" Artikelgruppe
+Artikelgruppe "1" -- "1..*" Artikel
+Lager -- Lagerarbeiter
+Lager --> Adresse : befindet sich in
+Artikel --> Lager : liegt in
+
+Person -- Adresse
+
+Rechnung "0..*" -- "1" Disponent
+Rechnung "0..*" -- "1" Kunde
+
+@enduml

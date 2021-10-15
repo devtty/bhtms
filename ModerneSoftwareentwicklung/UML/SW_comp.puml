@@ -1,0 +1,31 @@
+@startuml
+
+title Komponenten Rechnungserstellung
+
+component Browser
+
+cloud "Cloud" {
+
+component Autorisierung
+package "Lagerverwaltung"{
+  
+  component Anwendungserver{
+component Reporting
+  }
+  
+}
+  component Datenbank
+}
+
+
+[E-Mail-System]
+
+Browser --> Anwendungserver : HTTPS
+Anwendungserver <--> Autorisierung : OpenID
+Autorisierung <-- Browser : HTTPS
+Anwendungserver <-- Reporting
+Reporting <-- Datenbank : JDBC
+Anwendungserver --> [E-Mail-System] : SMTP
+
+
+@enduml

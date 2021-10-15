@@ -1,0 +1,31 @@
+@startuml
+
+actor Disponent
+actor Kunde
+actor Lagerarbeiter
+
+rectangle Lagerverwaltung{
+  usecase "fordert mehrere Artikel an" as p
+  usecase "lagert Artikel ein" as l
+  usecase "gruppiert Artikel" as g
+  usecase "kontrolliert Artikelgruppe" as k
+  usecase "liefert Artikelgruppe" as o
+  usecase "erstellt Rechnung" as r
+}
+Kunde --> p
+
+
+Lagerarbeiter -- l
+Lagerarbeiter -- g
+o ..> k : include
+o ..> r : include
+
+Disponent -- o
+
+k .> g : extends
+
+note "Ergebnis muss Benachrichtung aller beinhalten" as N1
+N1 .. p
+
+
+@enduml
