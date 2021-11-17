@@ -5,3 +5,5 @@ Hausaufgaben
 ------------
 
 - [1 - UML](./UML/uml.md)
+- [2 - DDD](./DDD/DDD.pdf)
+- [3 - MET](./MET/met.md)
