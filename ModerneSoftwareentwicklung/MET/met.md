@@ -6,7 +6,7 @@
 Denis Renning (BHT 914556)
 
 
-Für diese Einsendeaufgabe hole ich mal ein älteres Migrationsprojekt raus, welches ich vor einigen Jahren mal vergaß weiter nachzuverfolgen (aber den Vorteil hat bereits aufbereitete Metriken in der Dokumentation zu enthalten). Die Quellen finden Sie unter https://github.com/devtty/store . Es handelt sich um ein JavaEE-Projekt (JPA/JSF/JDK8) bei dem der Build-Prozess per Apache Maven anläuft. Ebenso kann eine Maven-typische Dokumentation erzeugt werden. Der Build-Prozess ist so definiert dass die Dokumentation lokal erzeugt werden kann und ggf. auf die Seite http://store.devtty.de/ hochgeladen wird. Dort finden Sie im Bereich Project Reports die Auswertungen zu.
+Für diese Einsendeaufgabe hole ich mal ein älteres Migrationsprojekt raus, welches ich vor einigen Jahren mal vergaß weiter nachzuverfolgen (aber den Vorteil hat bereits aufbereitete Metriken in der Dokumentation zu enthalten). Die Quellen finden Sie unter https://github.com/devtty/store . Es handelt sich um ein JavaEE-Projekt (JPA/JSF/JDK8) bei dem der Build-Prozess per Apache Maven anläuft. Ebenso kann auch eine Maven-typische Dokumentation erzeugt werden. Der Build-Prozess ist so definiert dass die Dokumentation lokal erzeugt werden kann und ggf. auf die Seite http://store.devtty.de/ hochgeladen wird. Dort finden Sie im Bereich Project Reports die entsprechenden Auswertungen.
 
 
 #### CPD
@@ -54,7 +54,7 @@ Die bisherigen Screenshots repräsentieren die Dokumentation vom Stand 14.06.201
 ![Maven Build](./build.png "Maven Build")
 ![Maven Site](./site.png "Maven Site")
 
-Wie man anhand der folgenden Bildern sieht, wurde seit 2016 doch ein wenig am Code gearbeitet. Zumindest wurden die Code-Duplikationen entfernt und 4 Tests wurden hinzugefügt (auch wenn diese derzeit fehlschlagen). Anhand des OWASP dependency-checks sieht man dass auch Bereich der Sicherheit einiges getan werden muss.
+Wie man anhand der folgenden Bildern sieht, wurde seit 2016 doch ein wenig am Code gearbeitet. Zumindest wurden die Code-Duplikationen entfernt und 4 Tests wurden hinzugefügt (auch wenn diese derzeit fehlschlagen). Anhand des OWASP dependency-checks sieht man dass auch Bereich der Sicherheit einiges getan werden müsste.
 
 ![Site - CPD](./n_cpd.png "CPD")
 ![Site - FindBugs](./n_findbugs.png "FindBugs")
