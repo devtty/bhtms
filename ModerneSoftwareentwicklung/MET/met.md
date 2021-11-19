@@ -63,6 +63,11 @@ Wie man anhand der folgenden Bildern sieht, wurde seit 2016 doch ein wenig am Co
 ![OWASP - Dependency](./dependency.png "OWASP Dependency")
 
 
+## Linkübersicht
+
+- Quellcode der analysierten Anwendung: https://github.com/devtty/store
+- Projekt-Reports (CPD/PMD/FindBugs/Surefire/OWASP-Dep):  http://store.devtty.de/project-reports.html
+- SonarCloud: https://sonarcloud.io/summary/overall?id=devtty_store
 
 
 
