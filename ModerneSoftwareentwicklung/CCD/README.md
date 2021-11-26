@@ -14,7 +14,7 @@ Denis Renning (BHT 914556)
 Für die zweite Aufgabe habe ich mir wieder ein altes Spiel-Projekt herausgepickt um es, gemäß der Aufgabenstellung, an einigen Stellen *von verschmutzt auf Clean zu refactoren*. Die Anwendung
 ist eine Webanwendung die in regelmäßigem Zeitabstand die Webseite der Niederbarnimer-Eisenbahn nach Verspätungsnachrichten und Abfahrtsdaten der Bahnlinie NEB27 aus der DB-Fahrbahnauskunft zieht und per [Twitter-Account](https://twitter.com/neb27k) (und an mein im Wohnzimmer stehendes [LaMetric](https://www.lametric.com)) über Verspätungen informiert.
 
-Die entsprechenden CCD-Änderungen wurden im Feature-Branch "CCDRefactor" getätigt und sind über den [Pull Request #5 CCD Refactor](https://github.com/devtty/neb27/pull/5) einsehbar.
+Die entsprechenden CCD-Änderungen wurden im Feature-Branch "CCDRefactor" getätigt und sind über den [Pull Request #5 CCD Refactor](https://github.com/devtty/neb27/pull/5) einsehbar. Die einzelnen Arbeitsschritte sind mit Link zum jeweiligen Commit im Anschluss ersichtlich.
 
 #### Remove magical numbers
 
