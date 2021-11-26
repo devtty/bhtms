@@ -12,7 +12,7 @@ Denis Renning (BHT 914556)
 ### Teil B: Refactoring
 
 Für die zweite Aufgabe habe ich mir wieder ein altes Spiel-Projekt herausgepickt um es, gemäß der Aufgabenstellung, an einigen Stellen *von verschmutzt auf Clean zu refactoren*. Die Anwendung
-ist eine Webanwendung die in regelmäßigem Zeitabstand die Webseite der Niederbarnimer-Eisenbahn nach Verspätungsnachrichten und Abfahrtsdaten der Bahnlinie NEB27 aus der DB-Fahrbahnauskunft zieht und per Twitter-Account[1] (und an mein im Wohnzimmer stehendes LaMetric[2]) über Verspätungen informiert.
+ist eine Webanwendung die in regelmäßigem Zeitabstand die Webseite der Niederbarnimer-Eisenbahn nach Verspätungsnachrichten und Abfahrtsdaten der Bahnlinie NEB27 aus der DB-Fahrbahnauskunft zieht und per [Twitter-Account](https://twitter.com/neb27k) (und an mein im Wohnzimmer stehendes [LaMetric](https://www.lametric.com)) über Verspätungen informiert.
 
 Die entsprechenden CCD-Änderungen wurden im Feature-Branch "CCDRefactor" getätigt und sind über den [Pull Request #5 CCD Refactor](https://github.com/devtty/neb27/pull/5) einsehbar.
 
@@ -28,7 +28,7 @@ new Paging(Constants.PAGING_OFFSET).get(0)
 ```
 Theoretisch könnte man nun die `0` ebenfalls als Magical Number betrachten, halte ich persönlich allerdings für eine unnötige Information, da Listenzugriffe mit `get(0)` auf das erste Element eigentlich eindeutig als solche erkennbar sind.
 - In der Klasse `Vbb` wird die Fahrplanauskunft (HAFAS) nach Abfahrtszeiten abgefragt (wie bei der LED-Anzeige an der Haltestelle nun mit `HAFAS_QUERY_DEPARTURE_MAX_JOURNEYS` (3) der nächsten Abfahrten)
-- Des Weiteren wird ebenfalls in Klasse `Vbb` der Status des REST-Requestes mit einer magical number `== 200` überprüft, die besser durch `Response.Status.OK.getStatusCode()' aus der RESTful Web Services-API ersetzt wird
+- Des Weiteren wird ebenfalls in Klasse `Vbb` der Status des REST-Requestes mit einer magical number `== 200` überprüft, die besser durch `Response.Status.OK.getStatusCode()` aus der RESTful Web Services-API ersetzt wird
 - Anschließend wurde in der gleichen Klasse noch ein weitere String-Offset und ein Faktor für Zeitberechnungen ersetzt
 
 
@@ -55,8 +55,8 @@ Theoretisch könnte man nun die `0` ebenfalls als Magical Number betrachten, hal
 |Vbb#calculateLate|late|lateMessage|
 |Vbb#calculateLate|date|departureDate|
 |Vbb#calculateLate|time|departureTime|
-|Vbb#calculateLate|rtDate|rtDate|
-|Vbb#calculateLate|rtTime|rtTime|
+|Vbb#calculateLate|rtDate|rtDate|nicht geändert da der Name gleichlautend mit denen aus dem jaxb-generierten Package (siehe [com.devtty.neb27k.jaxb.Departure](https://github.com/devtty/neb27/blob/2af55a238f5663409585513f8cec8cb2301b4502/src/main/java/com/devtty/neb27k/jaxb/Departure.java#L78))
+|Vbb#calculateLate|rtTime|rtTime|analog rtDate
 |Vbb#calculateLate|df|dateFormat|
 |Vbb#calculateLate|date1|departure|
 |Vbb#calculateLate|date2|realtime|
@@ -80,7 +80,7 @@ In der Klasse TwitterContentProxy wurde noch ein interner Entwickler-Kommentar z
 
 #### Exceptions catch them fast and early
 
-[059688d](https://github.com/devtty/neb27/pull/5/commits/059688ddb4c6214dcff52a81b29d4807b811c9ae)
+[61917bd](https://github.com/devtty/neb27/pull/5/commits/61917bda59f5a6378a8714b298b64a6e83b5c79c)
 
 In den Methoden `notifyClients()` und `getTweetsToday()` der Klasse `CheckChanges` wurden Funktionalitäten der Twitter-API genutzt und das Exception-Handling per `throws` einfach an die aufrufende Methode `execute()` weitergeleitet.
 Das widersprach natürlich dem Grundsatz diese möglichst früh (und präzise) zu verarbeiten. 
@@ -96,15 +96,11 @@ Hier wurde ein for-loop in eine etwas besser lesbare Form gebracht.
 
 [147706f](https://github.com/devtty/neb27/pull/5/commits/147706f3bb0c493bb083a7730144cdb3ea27a17a)
 
-In der Methode notifyClients() der Klasse `CheckChanges` wurden zwei Methoden extrahiert[3];
+In der Methode notifyClients() der Klasse `CheckChanges` wurden zwei Methoden extrahiert (siehe [Refactor-Katalog](https://refactoring.com/catalog/extractFunction.html));
 
 - `boolean isFromTodayAndNoRetweets(Status s)` prüft ob es sich um einen Tweet(Status) von heute handelt und dieser kein Retweet ist. In der alten Form war dieses (innerhalb der Lambda-Expression) nicht eindeutig sichtbar. Ist besser so.
 - `Date getStartTimeOfToday()` liefert den aktuellen Tagesanfang. Mit Extraktion wurde gleichzeitig die Ermittlung des Wertes (JDK6 -> JDK8) überarbeitet.
 
 
-
-[1] https://twitter.com/neb27k
-[2] https://www.lametric.com
-[3] https://refactoring.com/catalog/extractFunction.html
 
 
