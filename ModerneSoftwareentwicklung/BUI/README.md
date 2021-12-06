@@ -19,7 +19,7 @@ ANT-Build-Skript ([build.xml](https://github.com/devtty/neb27/blob/a96311dba8334
 Ausgehend vom Basisverzeichnis führen dann folgende Aufrufe zum Ergebnis
 
 |Befehl                 |Ergebnis|
-|-----------------------+--------|
+|-----------------------|--------|
 | ```mvn clean```       | löscht ./target |
 | ```mvn package```     | baut und erzeugt target/neb27k-1.0-SNAPSHOT.war |
 | ```ant clean```       | löscht target/classes/ |
