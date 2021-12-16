@@ -1,4 +1,4 @@
-IModerne Softwareentwicklung
+Moderne Softwareentwicklung
 ===========================
 
 Hausaufgaben
@@ -10,4 +10,5 @@ Hausaufgaben
 - [4 - CCD](./CCD/README.md)
 - [5 - DVCS](./DVCS/README.md)
 - [6 - BUI](./BUI/README.md)
+- [7 - CICD](./CICD/README.md)
 
