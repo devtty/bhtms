@@ -17,7 +17,7 @@ Als Alternative nun die Beschreibung für die Erzeugung des WebArchives mit Hilf
 
 ### Jenkins
 
-Den Jenkins-Server habe ich frisch als heruntergeladen (generic-war) und mittels 'java -jar jenkins' gestartet und installiert. Nachdem der Server startete mussten erst einmal in den Einstellungen (zu den Hilfsprogrammen) das JDK und die Maven-Installation eingestellt werden. Sowohl JDK als auch Maven waren bereits vorhanden.
+Den Jenkins-Server habe ich frisch heruntergeladen (generic-war) und mittels 'java -jar jenkins' gestartet und installiert. Nachdem der Server startete mussten erst einmal in den Einstellungen (zu den Hilfsprogrammen) das JDK und die Maven-Installation eingestellt werden. Sowohl JDK als auch Maven waren bereits vorhanden.
 
 ![JDK settings](./jenkins_conf_jdk.png)
 ![Maven settings](./jenkins_conf_mvn.png)
