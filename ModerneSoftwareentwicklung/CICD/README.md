@@ -99,7 +99,7 @@ Am Ende kann im fertiggestellten Buildprozess
 
 https://github.com/devtty/neb27/actions/runs/1586946128
 
-kann nach jeder Änderung das WAR-Paket, wie im Jenkins-Build, heruntergeladen werden. 
+nach jeder (erfolgreichen) Änderung des Quellcodes das WAR-Paket, wie im Jenkins-Build, heruntergeladen werden. 
 
 und mit Screenshot
-![finished](./gw_finished.png)
+![finished](./gw_finish.png)
