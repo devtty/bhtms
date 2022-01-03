@@ -1,5 +1,9 @@
 # neb27q Project
 
+neb27q is just a small simple show case which uses JAX-RS and Jsoup to parse the next departure of the "Heidekrautbahn" from Wandlitz-Hauptbahnhof
+
+
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
