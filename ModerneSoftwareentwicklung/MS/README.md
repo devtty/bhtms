@@ -41,10 +41,9 @@ foo@bar:~$ ./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
 
 dem jeweiligen Projekt hinzugefügt werden. 
 
-## neb27q
 
 <details>
-<summary></summary>
+<summary>Details zur Funktionalität von neb27q - Daten-Service</summary>
 <p>
 Holt die Information für die nächste Abfahrt eines Zuges vom Bahnhof, formatiert diese und liefert den Plain-Text ggf. aus.
 
@@ -75,12 +74,14 @@ public class AbWandlitzResource {
 </p>
 </details>
 
-## neb27t
-
 <details>
-<summary></summary>
+<summary>Details zur Funktionalität von neb27t - Timer-Service</summary>
 <p>
-aktualisiert alle 5 Minuten 
+Da sich der Datendienst (neb27q) irgendwo in "der Cloud" bzw. im OpenShift befindet und dessen Adresse evt. noch nicht bekannt ist, muss beim Start des Dienstes ('onStart(@Observes StartupEvent ev)') die entsprechende Verbindung erst noch gesucht werden (Discovery). (Bei einem kleinen Projekt wie diesem hätte man den Host natürlich auch aus der Konsole ablesen und statisch verdrahten können, dieses entspricht allerdings nicht dem Sinn :smile: des Microservice-Ansatzes  ). Der Dienst kann jedoch selbst mit OpenShift interagieren und die entsprechenden Routen abfragen ('openshiftClient.routes()') und der host wird in der Variable 'host' zwischengespeichert.
+
+In der 'push'-Methode, die alle 5 Minuten ausgeführt wird, wird der Status der nächsten Zugabfahrt vom Datenservice (neb27q) abgefragt und an den Endpunkt eines IoT-Gerätes per REST-Schnittstelle weitergeleitet.
+
+
 
 ```java
 @ApplicationScoped
@@ -138,6 +139,7 @@ public class LaMetricPushResource {
 ```
 </p>
 </details>
+
 
 
 ![import](./ms_1import.png)
