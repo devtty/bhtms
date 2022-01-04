@@ -1,6 +1,7 @@
-# neb27q Project
+# neb27t Project
 
-neb27q is just a small simple show case which uses JAX-RS and Jsoup to parse the next departure of the "Heidekrautbahn" from Wandlitz-Hauptbahnhof
+neb27t is just a small simple show case which uses REST-Client put the next departure of the "Heidekrautbahn" from Wandlitz-Hauptbahnhof
+on a LaMetric-Device.
 
 
 
