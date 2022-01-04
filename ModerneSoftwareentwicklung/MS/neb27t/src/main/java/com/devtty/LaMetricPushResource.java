@@ -52,7 +52,7 @@ public class LaMetricPushResource {
     void push() {	
 	
         try {
-            URL url = new URL(host);
+            URL url = new URL("http://" + host);
             Scanner s = new Scanner(url.openStream());
             String message = s.nextLine();
         } catch (MalformedURLException ex) {
