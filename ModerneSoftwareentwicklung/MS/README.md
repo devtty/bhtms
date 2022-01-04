@@ -35,11 +35,95 @@ Als erstes wurde die Anwendung in zwei Teile (Services/Dienste) geteilt, jeder s
 
 Im Aufbau entspricht jeder Teil in etwa dem Quarkus-Beispielprojekt (Maven-Archetyp) bei dem eine Klasse für die Funktionalität sorgt. Neben der Möglichkeit den Blueprint für den Microservice über Maven-Archetypes zu erzeugen besteht auch die Möglichkeit des Downloads über [https://code.quarkus.io/](https://code.quarkus.io/). Für neb27q bzw. neb27t werden noch die Erweiterungen "quarkus-resteasy" und "quarkus-openshift" benötigt um notwendige Kommunikation zwischen den Diensten zu gewährleisten. Des Weiteren benötigt neb27t die Erweiterung "quarkus-scheduler" da es sich um einen zeitbasierten Dienst handelt. Die Erweiterungen können mittels
 
-''' bash
-./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
-'''
+``` console
+foo@bar:~$ ./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
+```
 
 dem jeweiligen Projekt hinzugefügt werden. 
+
+
+
+
+
+```java
+@Path("/next")
+public class AbWandlitzResource {
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+
+	String ret = "";
+	try{
+	    Document doc = Jsoup.connect("https://www.lb-neb.de/de/app/webtools/trains.widget?action=departure&stop=1510837020596").get();
+	    Element firTime = doc.select(".ids-table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2)").first();
+	    Element firDire = doc.select(".ids-table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(3) > strong:nth-child(3)").first();
+	    Element secTime = doc.select(".ids-table > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(2)").first();
+	    ret = "naechste Abfahrt um " + firTime.text() + " nach " + firDire.text();
+	}catch(Exception e){
+	    ret = "error" + e.getMessage();
+	}
+
+        return ret;
+    }
+}
+```
+
+
+```
+@ApplicationScoped
+public class LaMetricPushResource {
+
+    private static final String LAMETRIC_DEV_CON = "https://developer.lametric.com";
+    private static final String LAMETRIC_WIDGET_URI = "api/V1/dev/widget/update/com.lametric.20d9fabf0b232dc145b0b82d9deb8ea9/1 ";
+
+    @Inject OpenShiftClient openshiftClient;
+
+    String host = null;
+    
+    void onStart(@Observes StartupEvent ev){
+	LabelSelector selector = new LabelSelectorBuilder().withMatchLabels(Map.ofEntries(entry("endpoint", "client"))).build();
+
+	List<Route> routes = openshiftClient.routes().withLabelSelector(selector).list().getItems();
+
+	Route route = routes.get(0);
+        
+        host = route.getSpec().getHost();
+
+    }
+    
+    @Scheduled(every="300s")
+    void push() {	
+	
+        try {
+            URL url = new URL("http://" + host);
+            Scanner s = new Scanner(url.openStream());
+            String message = s.nextLine();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(LaMetricPushResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LaMetricPushResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+	JsonObject message = Json.createObjectBuilder()
+	    .add("frames", Json.createObjectBuilder()
+		 .add("index", 0)
+		 .add("text", messageText)
+		 .add("icon", "i1347")
+		 )
+	    .build();
+
+	Client restClient = new ResteasyClientBuilder().build();      
+        
+        WebTarget target = restClient.target(LAMETRIC_DEV_CON).path(LAMETRIC_WIDGET_URI);
+        
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setNoCache(true);
+
+        Response response = target.request().accept(MediaType.APPLICATION_JSON).cacheControl(cacheControl).header("X-Access-Token", accessToken).post(Entity.json(message));
+    }
+}
+```
 
 ![import](./ms_1import.png)
 
