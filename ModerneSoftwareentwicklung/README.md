@@ -11,4 +11,4 @@ Hausaufgaben
 - [5 - DVCS](./DVCS/README.md)
 - [6 - BUI](./BUI/README.md)
 - [7 - CICD](./CICD/README.md)
-
+- [8 - AOP/MS](./MS/README.md)
