@@ -41,8 +41,12 @@ foo@bar:~$ ./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
 
 dem jeweiligen Projekt hinzugefügt werden. 
 
+## neb27q
 
-
+<details>
+<summary></summary>
+<p>
+Holt die Information für die nächste Abfahrt eines Zuges vom Bahnhof, formatiert diese und liefert den Plain-Text ggf. aus.
 
 
 ```java
@@ -68,9 +72,17 @@ public class AbWandlitzResource {
     }
 }
 ```
+</p>
+</details>
 
+## neb27t
 
-```
+<details>
+<summary></summary>
+<p>
+aktualisiert alle 5 Minuten 
+
+```java
 @ApplicationScoped
 public class LaMetricPushResource {
 
@@ -124,6 +136,9 @@ public class LaMetricPushResource {
     }
 }
 ```
+</p>
+</details>
+
 
 ![import](./ms_1import.png)
 
