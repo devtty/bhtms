@@ -33,7 +33,7 @@ Als erstes wurde die Anwendung in zwei Teile (Services/Dienste) geteilt, jeder s
  - [neb27q](https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/MS/neb27q) - Service der notwendige Daten bei der Bahn abfragt
  - [neb27t](https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/MS/neb27t) - Service der Daten an IoT-Endpunkt weitergibt
 
-Im Aufbau entspricht jeder Teil in etwa dem Quarkus-Beispielprojekt (Maven-Archetyp) bei dem eine Klasse für die Funktionalität sorgt. Neben der Möglichkeit den Blueprint für den Microservice über Maven-Archetypes zu erzeugen besteht auch die Möglichkeit des Downloads über [https://code.quarkus.io/](https://code.quarkus.io/). Für neb27q bzw. neb27t werden noch die Erweiterungen "quarkus-resteasy" und "quarkus-openshift" benötigt um notwendige Kommunikation zwischen den Diensten zu gewährleisten. Des Weiteren benötigt neb27t die Erweiterung "quarkus-scheduler" da es sich um einen zeitbasierten Dienst handelt. Die Erweiterungen können mittels
+Im Aufbau entspricht jeder Teil in etwa dem Quarkus-Beispielprojekt (Maven-Archetyp) bei dem eine Klasse für die Funktionalität sorgt. Neben der Möglichkeit den Blueprint für den Microservice über Maven-Archetypes zu erzeugen besteht auch die Möglichkeit des Downloads über [https://code.quarkus.io/](https://code.quarkus.io/). Für _neb27q_ bzw. _neb27t_ werden noch die Erweiterungen "quarkus-resteasy" und "quarkus-openshift" benötigt um notwendige Kommunikation zwischen den Diensten zu gewährleisten. Des Weiteren benötigt _neb27t_ die Erweiterung "quarkus-scheduler" da es sich um einen zeitbasierten Dienst handelt. Die Erweiterungen können mittels
 
 ``` console
 foo@bar:~$ ./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
@@ -134,8 +134,9 @@ public class LaMetricPushResource {
         Response response = target.request().accept(MediaType.APPLICATION_JSON).cacheControl(cacheControl).header("X-Access-Token", accessToken).post(Entity.json(message));
     }
 }
+```
 
-#### Einzelnen Microservice zusammenbauen
+#### Einen einzelnen Microservice zusammenbauen
 
 Während und nach der Implementation können per Maven verschiedene Ziele nützlich sein:
 
@@ -164,7 +165,8 @@ foo@bar:~$ ./mvnw clean package -Pnative
 
 Sowohl die Container-Images als auch das Uber-Jar und das Executable können in einer lokalen Kubernetes oder über die Webkonsole in OpenShift bereitgestellt werden.
 
-Des Weiteren kann aber auch direkt in einen konfigurierten Container deployed werden:
+Des Weiteren kann aber auch direkt in einen konfigurierten Container deployed werden. Möglich ist hier das Deployment in eine lokale oder entfernte Kubernetes oder OpenShift-Umgebung.
+Im Falle von entfernten OpenShift muss man dabei nur mit dem OpenShift-Client und seinem RedHat-Account angemeldet sein.
 
 ``` console
 foo@bar:~$ ./mvnw clean package -Dquarkus.kubernetes.deploy=true
@@ -188,6 +190,8 @@ OpenShift hat mittels Maven das Projekt gebaut und s2i-Image erstellt und in sei
 Kurzer Test ob der Dienst erreichbar ist: 
 
 ![Next one please](./ms_4next.png)
+
+Und auf dem Wohnzimmer-Regal:
 
 ![TheGif](./lametric.gif)
 
