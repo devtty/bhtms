@@ -1,4 +1,4 @@
-l65;6203;1c# Moderne Softwareentwicklung
+# Moderne Softwareentwicklung
 
 
 ## Einsendeaufgabe: AOP & MS
@@ -41,12 +41,11 @@ foo@bar:~$ ./mvnw quarkus:add-extension -Dextensions="quarkus-resteasy, ...
 
 dem jeweiligen Projekt hinzugefügt werden. 
 
+#### Details zu den einzelnen Microservices
 
-<details>
-<summary>Hier klicken: Für Details zur Funktionalität von neb27q - Daten-Service</summary>
-<p>
+##### Details zur Funktionalität von neb27q - Daten-Service
+
 Holt die Information für die nächste Abfahrt eines Zuges vom Bahnhof, formatiert diese und liefert den Plain-Text ggf. aus.
-
 
 ```java
 @Path("/next")
@@ -72,11 +71,10 @@ public class AbWandlitzResource {
 }
 ```
 </p>
-</details>
 
-<details>
-<summary> Hier klicken: Für Details zur Funktionalität von neb27t - Timer-Service</summary>
-<p>
+##### Details zur Funktionalität von neb27t - Timer-Service
+
+
 Da sich der Datendienst (neb27q) irgendwo in "der Cloud" bzw. im OpenShift befindet und dessen Adresse evt. noch nicht bekannt ist, muss beim Start des Dienstes ('onStart(@Observes StartupEvent ev)') die entsprechende Verbindung erst noch gesucht werden (Discovery). (Bei einem kleinen Projekt wie diesem hätte man den Host natürlich auch aus der Konsole ablesen und statisch verdrahten können, dieses entspricht allerdings nicht dem Sinn :smile: des Microservice-Ansatzes  ). Der Dienst kann jedoch selbst mit OpenShift interagieren und die entsprechenden Routen abfragen ('openshiftClient.routes()') und der host wird in der Variable 'host' zwischengespeichert.
 
 In der 'push'-Methode, die alle 5 Minuten ausgeführt wird, wird der Status der nächsten Zugabfahrt vom Datenservice (neb27q) abgefragt und an den Endpunkt eines IoT-Gerätes per REST-Schnittstelle weitergeleitet.
@@ -121,7 +119,7 @@ public class LaMetricPushResource {
 	JsonObject message = Json.createObjectBuilder()
 	    .add("frames", Json.createObjectBuilder()
 		 .add("index", 0)
-		 .add("text", messageText)
+		 .add("text", message)
 		 .add("icon", "i1347")
 		 )
 	    .build();
@@ -136,9 +134,8 @@ public class LaMetricPushResource {
         Response response = target.request().accept(MediaType.APPLICATION_JSON).cacheControl(cacheControl).header("X-Access-Token", accessToken).post(Entity.json(message));
     }
 }
-```
-</p>
-</details>
+
+#### Einzelnen Microservice zusammenbauen
 
 Während und nach der Implementation können per Maven verschiedene Ziele nützlich sein:
 
@@ -163,6 +160,8 @@ Zusammenbau des Dienstes als native Executable (bei installierter GraalVM)
 foo@bar:~$ ./mvnw clean package -Pnative
 ```
 
+#### Einzelnen Micorservice bereitstellen
+
 Sowohl die Container-Images als auch das Uber-Jar und das Executable können in einer lokalen Kubernetes oder über die Webkonsole in OpenShift bereitgestellt werden.
 
 Des Weiteren kann aber auch direkt in einen konfigurierten Container deployed werden:
@@ -182,6 +181,9 @@ Das Repository wurde erfolgreich als Microservice erkannt und OpenShift beginnt 
 OpenShift hat mittels Maven das Projekt gebaut und s2i-Image erstellt und in seine registry gepusht. Danach wird der Dienst bereitgestellt.
 
 ![Build and Push](./ms_3buildpush.png)
+
+
+#### Test und Ende
 
 Kurzer Test ob der Dienst erreichbar ist: 
 
