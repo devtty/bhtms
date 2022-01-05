@@ -140,23 +140,26 @@ public class LaMetricPushResource {
 
 Während und nach der Implementation können per Maven verschiedene Ziele nützlich sein:
 
-Kompilieren des Projektes und starten des Dienstes in einer Entwicklungsumgebung: 
+Zum Kompilieren des Projektes und starten des Dienstes in einer Entwicklungsumgebung genügt: 
 
 ``` console
 foo@bar:~$ ./mvnw compile quarkus:dev
 ```
 
-Zusammenbau des Dienstes als Container-Image (je nach Konfiguration als Docker oder S2I-Image)
+Das Projekt wird nun kompiliert und innerhalb einer kleinen Serverumgebung gestartet. Beispielsweise kann so über eine lokale URL der Service bereits abgerufen und getestet werden. 
+Für "produktivere" Umgebungen kann der Dienst auch für verschiedene Container-Umgebungen verpackt werden.
+
+Bsp.: Zusammenbau des Dienstes als Container-Image (je nach Konfiguration als Docker oder S2I-Image)
 ``` console
 foo@bar:~$ ./mvnw clean package -Dquarkus.container-image.build
 ```
 
-Zusammenbau des Dienstes als ausführbares Uber-jar
+Bsp.: Zusammenbau des Dienstes als ausführbares Uber-jar
 ``` console
 foo@bar:~$ ./mvnw clean package -Dquarkus.package-type=uber-jar
 ```
 
-Zusammenbau des Dienstes als native Executable (bei installierter GraalVM)
+Bsp.: Zusammenbau des Dienstes als native Executable (bei installierter GraalVM)
 ``` console
 foo@bar:~$ ./mvnw clean package -Pnative
 ```
@@ -184,6 +187,8 @@ OpenShift hat mittels Maven das Projekt gebaut und s2i-Image erstellt und in sei
 
 ![Build and Push](./ms_3buildpush.png)
 
+Der zweite (und später jeder weitere) Dienst kann auf gleichem Wege oder über die oben erwähnte Kommandozeile bereitgestellt werden. Ist alles erfolgreich verlaufen folgt ein kleiner Test.
+
 
 #### Test und Ende
 
@@ -194,5 +199,6 @@ Kurzer Test ob der Dienst erreichbar ist:
 Und auf dem Wohnzimmer-Regal:
 
 ![TheGif](./lametric.gif)
+
 
 
