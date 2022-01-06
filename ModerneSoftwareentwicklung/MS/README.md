@@ -202,3 +202,7 @@ Und auf dem Wohnzimmer-Regal:
 
 
 
+## Zusatzaufgabe
+
+Da es im Forum noch Schwierigkeiten bei der Ausführung zum Thema AOP gab, noch eine Kleinigkeit unter 
+[AspectJ Demo](https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/MS/aspectdemo)
