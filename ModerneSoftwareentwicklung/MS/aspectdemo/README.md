@@ -18,7 +18,7 @@ Original
 foo@bar:~$ ./mvn clean install
 ```
 
-![IDE](./nb1.png)
+![IDE](../nb1.png)
 
 Log-Output im Fenster rechts/unten, die oberen Zeilen zeigen das Weaving im compile-Schritt
 und die Tests darunter den erfolgreichen Test.
