@@ -14,7 +14,7 @@ Original
 
 ## Test:
 
-`` console
+``` console
 foo@bar:~$ ./mvn clean install
 ```
 
