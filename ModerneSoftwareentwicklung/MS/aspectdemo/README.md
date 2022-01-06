@@ -1,7 +1,7 @@
 # AspectJ Demo
 
 
-Original
+Original von @eugenp
 
  [https://www.baeldung.com/aspectj](https://www.baeldung.com/aspectj)
 
