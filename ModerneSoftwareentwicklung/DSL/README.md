@@ -205,7 +205,7 @@ NL: '\r'? '\n';
 ```
 
 
-Die komplette Anwendung findet sich im Verzeichnis (./antlr)[https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/DSL/antlr]
+Die komplette Anwendung findet sich im Verzeichnis [./antlr](https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/DSL/antlr)
 
 In [Zeile 28](https://github.com/devtty/bhtms/blob/62a18f2b19c0494d55a95ba83e315915b6f91bde/ModerneSoftwareentwicklung/DSL/antlr/src/main/java/com/devtty/antlr/LineFactory.java#L28) der Klasse LineFactory findet man auch die Anwendung
 des Fluent-Interfaces aus der ersten Teilaufgabe. Die Objekte der Klasse ```Fahrt``` werden hier als Transferobjekts in einer Map abgelegt welche an die eigentliche Anwendung weitergereicht wird.
