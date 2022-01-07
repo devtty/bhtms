@@ -168,9 +168,9 @@ Letztendlich geht es aber auch mit Java recht einfach :smile:
 
 thanks to [Alex Collins](https://alexecollins.com/antlr4-and-maven-tutorial/) (@alexec) :smile:
 
-Für 
+Für einen einfachen Anwendungsfall soll eine Bahnfahrt beschrieben werden. Die entsprechende DSL beschreibt Abfahrtszeiten und die dazugehörigen Streckenabschnitte,
 
-src/main/resources
+src/main/resources/neb27.line
 
 ```
 "NEB siebnunzwanzich"
@@ -182,9 +182,9 @@ src/main/resources
 
 ```
 
-src/main/antlr4/
+Die grammatikalische Beschreibung für ANTLR liegt unter ```src/main/antlr4/```, zu beachten ist hier ggf. auch die korrekte Ordnerstruktur die der Packagestruktur entsprechen sollte.
 
-Line.g4
+src/main/antlr4/com/devtty/antlr/Line.g4
 
 ```
 grammar Line;
@@ -203,4 +203,14 @@ Int: ('0'..'9')+;
 WS: (' ' | '\t')+;
 NL: '\r'? '\n';
 ```
+
+
+Die komplette Anwendung findet sich im Verzeichnis (./antlr)[https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/DSL/antlr]
+
+In [Zeile 28](https://github.com/devtty/bhtms/blob/62a18f2b19c0494d55a95ba83e315915b6f91bde/ModerneSoftwareentwicklung/DSL/antlr/src/main/java/com/devtty/antlr/LineFactory.java#L28) der Klasse LineFactory findet man auch die Anwendung
+des Fluent-Interfaces aus der ersten Teilaufgabe. Die Objekte der Klasse ```Fahrt``` werden hier als Transferobjekts in einer Map abgelegt welche an die eigentliche Anwendung weitergereicht wird.
+
+Die Beispiel-Anwendung nimmt auf der Kommandozeile (oder wie im Beispielbild auch innerhalb der IDE) Startbahnhöfe entgegen und antwortet dann mit der Abfahrtszeit und dem nächsten Ziel. Solange bis mit "exit" abgebrochen wird.
+
+![IDE](./nb2.png)
 
