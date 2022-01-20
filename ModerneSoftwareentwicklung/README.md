@@ -12,3 +12,5 @@ Hausaufgaben
 - [6 - BUI](./BUI/README.md)
 - [7 - CICD](./CICD/README.md)
 - [8 - AOP/MS](./MS/README.md)
+- [9 - DSL](./DSL/README.md)
+
