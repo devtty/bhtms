@@ -33,8 +33,11 @@ Vorschlag: Emacs (mit Basiskurs Lisp) als Standard-IDE in der Lehre, das bringt 
 
 ### ramblings
 
-Verdammt, jetzt hab ich mit dem letzten Satz des vorherigen Abschnitts schon vorgegriffen. Kult, Religion, egal! Kennt man heute eigentlich noch newsgroups? [news:alt.religion.emacs](alt.religion.emacs). Auch wenn schon etwas älter, ein absolut cooler Artikel und für mich total nachvollziehbar. Mein erstes Studium (Diplom Medieninformatik an der FHTW) schloss ich 2003 ab und bin immer noch dankbar dass zwei der Professoren mir eine kleine Einführung in Emacs, und damit auch an elisp, gaben. Apache ANT war relativ neu und an Lambdas in Java war bei weitem noch nicht zu denken.   
+Verdammt, jetzt hab ich mit dem letzten Satz des vorherigen Abschnitts schon vorgegriffen. Kult, Religion, egal! Kennt man heute eigentlich noch newsgroups? news:alt.religion.emacs. Auch wenn schon etwas älter, ein absolut cooler Artikel und für mich total nachvollziehbar. Mein erstes Studium (Diplom Medieninformatik an der FHTW) schloss ich 2003 ab und bin immer noch dankbar dass zwei der Professoren mir eine kleine Einführung in Emacs, und damit auch an elisp, gaben. Apache ANT war relativ neu und an Lambdas in Java war bei weitem noch nicht zu denken. Das Erstellen schneller Templates mittels Emacs jedoch schnell erlernt. Über die Jahre erweiterten sich die Kenntnisse im Emacs-Umfeld und damit auch in elisp, dass allein zur Konfiguration bereits notwendig ist. Abgesehen von der funktionalen Programmierung lohnt sich auch ein Abstecher in andere emacs-nahe Felder, wie orgmode (Projekt-/Knowledgemanagement) oder orgbabel (literate programming). Letzteres auch gut in Verbindung mit der funktionalen Programmierung.
 
+###
+
+Für die Programmieraufgabe gibt es ein kleines Skript, wie gehabt (und zum letzten Mal) mit NEB27-Bezug. Nach Aufruf wird von der NEB-Seite die nächste Abfahrt vom Bahnhof geparst und danach wiedergegeben.
 
 
 ```lisp
@@ -51,3 +54,11 @@ Verdammt, jetzt hab ich mit dem letzten Satz des vorherigen Abschnitts schon vor
 	  (string-trim (dom-text (nth 4 (dom-children (nth 4 (nebtable dom))))))  ;;nächste Abfahrt nach
 	  ))
 ```
+
+Die Auswertung in emacs gibt das Ergebnis im mini-buffer (unterste Zeile) wieder. 
+![emacs](./emacs.png)
+
+
+Im Verzeichnis [[https://github.com/devtty/bhtms/blob/main/ModerneSoftwareentwicklung/FP/]] liegt noch eine Version die das Ganze als Shell-Skript aufruft. Die Ausgabe in der Shell sieht folgend aus:
+
+![cli](./neb27cli.png)
