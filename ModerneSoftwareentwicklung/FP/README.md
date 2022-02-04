@@ -59,6 +59,6 @@ Die Auswertung in emacs gibt das Ergebnis im mini-buffer (unterste Zeile) wieder
 ![emacs](./emacs.png)
 
 
-Im Verzeichnis [[https://github.com/devtty/bhtms/blob/main/ModerneSoftwareentwicklung/FP/]] liegt noch eine Version die das Ganze als Shell-Skript aufruft. Die Ausgabe in der Shell sieht folgend aus:
+Im Repository [https://github.com/devtty/bhtms/tree/main/ModerneSoftwareentwicklung/FP] liegt noch eine Version die das Ganze als Shell-Skript aufruft. Die Ausgabe in der Shell sieht folgend aus:
 
 ![cli](./neb27cli.png)
